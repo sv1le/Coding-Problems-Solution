@@ -1,0 +1,88 @@
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+Input: nums = [2,2,1]
+Output: 1
+
+Input: nums = [4,1,2,1,2]
+Output: 4
+
+ans = using map
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        unordered_map <int,int> m;
+        for(auto it : nums){
+            m[it]++;
+        }
+        for(auto pr : m){
+            if(pr.second == 1){
+                return pr.first;
+            }
+        }
+        return -1;
+    }
+};
+
+alternate way to use map 
+class Solution {
+public:
+    int singleNumber(vector<int>& arr) {
+        int n = arr.size(); // taking the size of the array 
+        
+        unordered_map<int, int> mp; // unordered map to store the frequency
+        
+        // storing frequency in the map
+        for(int i = 0; i < n; i++)
+        {
+            mp[arr[i]]++;
+        }
+        
+        int ans; // variable to store our answer
+        for(auto x: mp) // traverse from the map
+        {
+            if(x.second == 1) //if frequency of any elemennt is 1
+            {
+                ans = x.first; // store in our answer
+                break; // break the loop, as we got our answer now
+            }
+        }
+        
+        return ans; // return ans
+    }
+};
+
+or brute force
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+       sort(nums.begin(),nums.end());
+       for(int i = 1;i < nums.size();i+=2){
+           if(nums[i] != nums[i - 1]){
+               return nums[i - 1];
+           }
+       }
+        return nums[nums.size() - 1];
+    }
+};
+
+
+
+or u can use xor
+
+class Solution {
+public:
+    int singleNumber(vector<int>& arr) {
+        int n = arr.size(); // extracting the size of the array
+        
+        // traverse from the array
+        for(int i = 0; i < n - 1; i++)
+        {
+            arr[i + 1] = arr[i] ^ arr[i + 1]; // (prev answer xor current index)
+        }
+        
+        return arr[n- 1]; // return left over element
+    }
+};
