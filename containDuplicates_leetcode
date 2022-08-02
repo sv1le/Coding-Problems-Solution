@@ -1,0 +1,60 @@
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+Input: nums = [1,2,3,1]
+Output: true
+
+Input: nums = [1,2,3,4]
+Output: false
+
+we can do this in 2 methods
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_set <int> s;
+        for(int i = 0;i < nums.size();i++){
+            s.insert(nums[i]);
+        }
+        if(s.size() != nums.size()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
+
+or another method
+
+class Solution {
+public:
+bool containsDuplicate(vector& nums)
+{
+unordered_map<int,int>mp;
+for(int i=0;i<nums.size();i++)
+{
+mp[nums[i]]++;
+}
+unordered_map<int,int>:: iterator it;
+for(it=mp.begin();it!=mp.end();it++)
+{
+if(it->second>1)
+return true;
+}
+return false;
+}
+};
+
+
+or we can also use map
+
+bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int, int> m;
+        for(int i = 0; i < nums.size(); i++) {
+            if(m.find(nums[i]) != m.end())
+                return true;
+            
+            m[nums[i]] = 1;
+        }
+        return false;
+    }
