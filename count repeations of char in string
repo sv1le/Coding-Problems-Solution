@@ -1,0 +1,16 @@
+string s;
+    cin >> s;
+    vector <ll> hash_table(256,0);
+    ll n = s.length();
+    FOR(i,n){
+        hash_table[s[i]]++;
+    }
+    ll max = 0;
+    ll ans;
+    FOR(i,256){
+        if (max < hash_table[i]){
+            max = hash_table[i];
+            ans = max;
+        }
+    }
+    cout << ans;
