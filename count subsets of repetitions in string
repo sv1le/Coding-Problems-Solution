@@ -1,0 +1,20 @@
+
+i - AAGGAA
+o - 2
+
+i - AAAAGG
+o - 4
+
+string s;
+    cin >> s;
+    ll n = s.length();
+    ll best = 0, curr = 1;
+    for (int i = 1; i < n; ++i) {
+        if (s[i] != s[i - 1]) {
+            best = max(best, curr);
+            curr = 0;
+        }
+        curr++;
+    }
+    best = max(best,curr);
+    cout << best;
