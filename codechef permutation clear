@@ -1,0 +1,29 @@
+basically there are 2 arrays ,A and B.u need to traverse throu all elments of B and if those elments are present in A,print the array A w/o those elments
+
+int main() {
+    ll t;
+    cin >> t;
+    while (t--) {
+        unordered_map <ll, ll> m;
+        ll n, k;
+        cin >> n;
+        ll a[n];
+        FOR(i, n) {
+            cin >> a[i];
+            m[a[i]]++;
+        }
+        cin >> k;
+        FOR(i, k) {
+            ll temp;
+            cin >> temp;
+            m[temp]++;
+        }
+        FOR(i, n) {
+            if ((*m.find(a[i])).second <= 1) {
+                cout << a[i] << " ";
+            }
+        }
+        cout << "\n";
+    }
+
+}
